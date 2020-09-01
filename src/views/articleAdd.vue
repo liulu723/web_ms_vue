@@ -63,13 +63,15 @@ export default {
     onSubmit(){
       if(this.type){
         this.$apis.articleEditor(this.form).then(res => {
-          this.$message({
-            type:'success',
-            message:'编辑成功!!!'
-          })
-          this.$router.push({
-            name:'Article'
-          })
+          if(res.data.state){
+            this.$message({
+              type:'success',
+              message:'编辑成功!!!'
+            })
+            this.$router.push({
+              name:'Article'
+            })
+          }
         }) 
       }else{
         this.$apis.articleAdd(this.form).then(res => {
